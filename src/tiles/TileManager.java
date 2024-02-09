@@ -1,8 +1,8 @@
 package tiles;
 
 import Main.GamePanel;
+import Main.UtilityTool;
 
-import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -55,49 +55,40 @@ public class TileManager {
 
         }
     }
-    public void getTileImage()
+  public void setup(int index, String path, boolean collision)
     {
+        UtilityTool uTool = new UtilityTool();
         try
         {
-            tile[0]= new Tiles();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/dirt_podzol_top.png"));
-            tile[1]= new Tiles();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/water1.png"));
-            tile[1].collision=true;
-            tile[2] = new Tiles();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/water2.png"));
-            tile[2].collision=true;
-            tile[3] = new Tiles();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/cobblestone.png"));
-            tile[3].collision=true;
-            tile[4] = new Tiles();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/dirt.png"));
-            tile[5] = new Tiles();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/log_oak.png"));
-            tile[6] = new Tiles();
-            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/flower_tulip_red.png"));
-            tile[6].collision=true;
-            tile[7] = new Tiles();
-            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/flower_rose.png"));
-            tile[7].collision=true;
-            tile[8] = new Tiles();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/cobblestone_mossy.png"));
-            tile[8].collision=true;
-
-            
-
-
-
-            
-
-
-
-        }
-        catch(IOException e)
+            tile[index]= new Tiles();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/"+path+".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image,gp.tileSize,gp.tileSize);
+            tile[index].collision = collision;
+        } catch(IOException e)
         {
             e.printStackTrace();
         }
     }
+    public void getTileImage()
+    {
+       /*try{
+           tile[0] = new Tiles();
+           tile[0].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/cobblestone.png"));
+           tile[0].collision = false;
+           tile[1] = new Tiles();
+           tile[1].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/cobblestone_mossy.png"));
+           tile[1].collision = true;
+
+
+
+       }catch(IOException e)
+       {
+           e.printStackTrace();
+       } */
+       setup(0,"cobblestone",false);
+       setup(1,"cobblestone_mossy",true);
+    }
+
 
     public void draw(Graphics2D g2)
     {
@@ -113,7 +104,7 @@ public class TileManager {
               WorldX -gp.tileSize <gp.player.worldX + gp.player.screenX &&
            WorldY + gp.tileSize > gp.tileSize + - gp.player.screenY
            && WorldY -gp.tileSize < gp.player.worldY + gp.player.screenY) {
-               g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+               g2.drawImage(tile[tileNum].image, screenX, screenY, null);
            }
            Worldcol++;
 

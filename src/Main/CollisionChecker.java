@@ -75,8 +75,8 @@ public class CollisionChecker {
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
                 entity.solidArea.y = entity.worldY + entity.solidArea.y;
                 //Item
-                gp.objs[i].solidArea.x = gp.objs[i].WorldX + gp.objs[i].solidArea.x;
-                gp.objs[i].solidArea.y = gp.objs[i].WorldY + gp.objs[i].solidArea.y;
+                gp.objs[i].solidArea.x = gp.objs[i].worldX + gp.objs[i].solidArea.x;
+                gp.objs[i].solidArea.y = gp.objs[i].worldY + gp.objs[i].solidArea.y;
 
 
                 switch (entity.direction) {

@@ -10,7 +10,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Go out");
+        window.setTitle("FormulaEscape");
         window.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/icon/icon.jpg")));
         GamePanel GamePanel = new GamePanel();
 

@@ -11,15 +11,17 @@ import java.awt.Rectangle;
 import java.security.Key;
 
 public class Player extends Entity{
-    GamePanel gp;
+
     KeyHandler KeyH;
     public final int screenX;
     public final int screenY;
+    public int worldX,worldY;
    public int Keycount =0;
 
     public Player(GamePanel gp, KeyHandler KeyH)
     {
-        this.gp = gp;
+        super(gp);
+
         this.KeyH = KeyH;
         setDefaultValue();
         getPlayerImage();
@@ -37,8 +39,8 @@ public class Player extends Entity{
 
     public void setDefaultValue()
     {
-        worldX = gp.tileSize*15;
-        worldY= gp.tileSize*10;
+        worldX = gp.tileSize*50;
+        worldY= gp.tileSize*98;
         speed=3;
         direction="down";
 
@@ -68,6 +70,7 @@ public class Player extends Entity{
         }
 
     }
+
     public void update()
     {
         if(KeyH.goUp || KeyH.goDown || KeyH.goLeft || KeyH.goRight )

@@ -1,5 +1,6 @@
 package Main;
 
+import Entity.Entity;
 import Entity.Player;
 import Objects.SuperObjects;
 import tiles.TileManager;
@@ -9,15 +10,15 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
     final int OriginalSize = 16;
-    public  final int tileSize = OriginalSize *3;
-    public int maxScreenCol = 30;
-    public int maxScreenRow = 15;
+    public  final int tileSize = OriginalSize *2;
+    public int maxScreenCol = 16;
+    public int maxScreenRow = 9;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
     //WORLD SETTING
-    public final int maxWorldCol = 87;
-    public final int maxWorldRow =20 ;
+    public final int maxWorldCol = 100;
+    public final int maxWorldRow = 100;
     public int worldWigth = maxWorldCol * tileSize;
     public int worldHeight = maxWorldRow * tileSize;
 
@@ -31,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler KeyH = new KeyHandler();
     Thread gameThread;
     public Player player = new Player(this,KeyH);
+    public Entity npc[] = new Entity[20];
     public CollisionChecker cChecker = new CollisionChecker(this);
     public UI Ui = new UI(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -42,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame()
     {
         aSetter.setObject();
+        aSetter.setNPC();
     }
     public GamePanel()
     {
@@ -143,6 +146,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
         //player
         player.draw(g2);
+        // NPC
+        for(int i=0;i<npc.length;i++)
+        {
+            if(npc[i]!=null)
+                npc[i].draw(g2,this);
+        }
         //UI
         Ui.draw(g2);
 
